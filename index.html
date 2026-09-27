@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacked By Hitman</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      font-family: monospace;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      padding-top: 60px;
+      overflow: hidden;
+    }
+
+    /* VIDEO BACKGROUND FIX */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -100;
+      pointer-events: none;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: -50;
+    }
+
+    .top-img img {
+      width: 140px;
+    }
+
+    @keyframes rgb3 {
+      0% { color: #000; }
+      33% { color: #ff0000; }
+      66% { color: #ffffff; }
+      100% { color: #000; }
+    }
+
+    @keyframes Hitman {
+      0% { color: #ffffff; }
+      50% { color: #ff0000; }
+      100% { color: #ffffff; }
+    }
+
+    .hacked {
+      margin-top: 20px;
+      font-size: 36px;
+      text-shadow: 0 0 10px #000, 0 0 15px #ff0000;
+      animation: rgb3 2.5s infinite;
+    }
+
+    .hacked .name {
+      animation: Hitman 1.2s infinite;
+    }
+
+    .discord {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .discord a {
+      color: #ff6a00;
+      text-decoration: none;
+    }
+
+    .msg {
+      margin-top: 8px;
+      font-size: 18px;
+      animation: rgb3 2.5s infinite;
+    }
+
+    .ip {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .ipinfo-title {
+      margin-top: 6px;
+      font-size: 15px;
+    }
+
+    .info {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #ff6a00;
+    }
+
+    .down {
+      margin-top: 25px;
+      font-size: 22px;
+      color: red;
+      text-shadow: 0 0 10px red;
+    }
+
+    .bottom-img {
+      margin-top: 20px;
+    }
+
+    .bottom-img img {
+      width: 160px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- الفيديو يعمل تلقائياً بدون صوت -->
+  <video class="video-bg" autoplay muted loop playsinline preload="auto">
+    <source src="https://files.catbox.moe/x95dn4.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="top-img">
+    <img src="https://i.postimg.cc/ydYkdNHK/1291869918794616902.webp" alt="top">
+  </div>
+
+  <div class="hacked">
+    Hacked By [ <span class="name">Hitman</span> ]
+  </div>
+
+  <div class="discord">
+    <a href="https://discord.gg/h2ck">Discord.gg/h2ck يلا بنعالي حياكم الدس</a>
+  </div>
+
+  <div class="msg">
+    Hitman1337. Blow up the server بنعال يزن هههههههههههههههه
+  </div>
+
+  <div class="ip">
+    Your IP Address: <span id="ip">Loading...</span>
+  </div>
+
+  <div class="ipinfo-title">
+    Your IP Info
+  </div>
+
+  <div class="info">
+    City: <span id="city"></span><br>
+    Region: <span id="region"></span><br>
+    Country: <span id="country"></span><br>
+    Location: <span id="loc"></span><br>
+    Org: <span id="org"></span><br>
+    Timezone: <span id="timezone"></span>
+  </div>
+
+  <div class="down">
+    Oops, your server is down!
+  </div>
+
+  <!-- الصوت الجديد -->
+  <audio id="bg-audio" autoplay loop>
+    <source src="https://files.catbox.moe/epsxs9.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // منع كليك يمين
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    // منع F12 و Ctrl+Shift+I و Ctrl+Shift+J و Ctrl+U و Ctrl+S
+    document.onkeydown = function(e) {
+      if (
+        e.keyCode == 123 ||
+        (e.ctrlKey && e.shiftKey && e.keyCode == 73) ||
+        (e.ctrlKey && e.shiftKey && e.keyCode == 74) ||
+        (e.ctrlKey && e.keyCode == 85) ||
+        (e.ctrlKey && e.keyCode == 83)
+      ) {
+        return false;
+      }
+    };
+
+    // تأكيد تشغيل الفيديو في حال منعه المتصفح
+    (function forceVideoPlay() {
+      const video = document.querySelector('.video-bg');
+      if (!video) return;
+
+      const playVideo = () => {
+        video.play().catch(() => {});
+      };
+
+      // محاولة التشغيل فوراً
+      playVideo();
+
+      // محاولة عند أول تفاعل من المستخدم
+      document.addEventListener('click', playVideo, { once: true });
+      document.addEventListener('touchstart', playVideo, { once: true });
+      document.addEventListener('keydown', playVideo, { once: true });
+      document.addEventListener('mousemove', playVideo, { once: true });
+    })();
+
+    // محاولة تشغيل الصوت تلقائياً بعد أول تفاعل من المستخدم
+    (function enableAudioOnInteraction() {
+      const audio = document.getElementById('bg-audio');
+      const tryPlay = () => {
+        audio.play().catch(() => {});
+      };
+
+      // محاولة التشغيل فوراً
+      tryPlay();
+
+      // محاولة عند أول تفاعل
+      document.addEventListener('click', tryPlay, { once: true });
+      document.addEventListener('touchstart', tryPlay, { once: true });
+      document.addEventListener('keydown', tryPlay, { once: true });
+      document.addEventListener('mousemove', tryPlay, { once: true });
+    })();
+  </script>
+
+  <script>
+    fetch("https://ipinfo.io/json")
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('ip').textContent = d.ip;
+        document.getElementById('city').textContent = d.city;
+        document.getElementById('region').textContent = d.region;
+        document.getElementById('country').textContent = d.country;
+        document.getElementById('loc').textContent = d.loc;
+        document.getElementById('org').textContent = d.org;
+        document.getElementById('timezone').textContent = d.timezone;
+      })
+      .catch(() => {
+        document.getElementById('ip').textContent = 'غير متاح';
+      });
+  </script>
+
+</body>
+</html>
